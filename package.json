@@ -51,18 +51,19 @@
     "flow-copy-source": "^2.0.9",
     "npm-run-all": "^4.1.2",
     "quill": "^2.0.0",
-    "rimraf": "^2.6.2",
-    "webpack": "^5.93.0"
+    "rimraf": "^4.4.1",
+    "webpack": "^5.93.0",
+    "webpack-cli": "^5.1.4"
   },
   "scripts": {
     "build": "yarn clean && yarn build:babel && yarn build:webpack && yarn build:copy-flow-source && yarn build:copy-ts-defs",
     "build:babel": "babel src/ --out-dir dist",
     "build:copy-flow-source": "flow-copy-source --verbose src dist",
     "build:copy-ts-defs": "copyfiles index.d.ts dist",
-    "build:webpack": "webpack -p --progress --colors",
+    "build:webpack": "webpack --mode production --progress --color",
     "clean": "rimraf dist",
     "dev:babel": "babel --watch src/ --out-dir dist",
-    "dev:webpack": "yarn dev:delay && webpack --progress --colors --watch",
+    "dev:webpack": "yarn dev:delay && webpack --progress --color --watch",
     "dev:delay": "node -e \"setTimeout(() => {}, 3000)\"",
     "prepublishOnly": "yarn build",
     "start": "yarn clean && yarn npm-run-all --race --parallel dev:babel dev:webpack",
